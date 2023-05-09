@@ -13,7 +13,7 @@ class Order extends Model
 
     public function machine_detail_order()
     {
-        return $this->belongsToMany('App\Models\Machine_detail');
+        return $this->belongsToMany('App\Models\MachineDetail');
     }
 
 }

@@ -39,4 +39,21 @@ class SendtoRequest extends FormRequest
         ];
         
     }
+
+    public function messages(): array
+    {
+        return [
+            'seminar_day.required' => 'セミナー開催日は必ず入力してください。',
+            'seminar_name.required' => 'セミナー名は必ず入力してください。',
+            'venue_zip.required' => '郵便番号は必ず入力してください。',
+            'venue_addr1.required' => '住所は必ず入力してください。',
+            'venue_name.required' => '配送先担当者は必ず入力してください。',
+            'venue_tel.required' => '配達先電話番号は必ず入力してください。',
+            'venue_tel.integer' => '配達先電話番号はアラビア数字で入力してください。',
+            'venue_tel.digits_between:5,11' => '配達先電話番号は市外局番から入力してください。',
+            'shipping_arrive_day.required' => '到着希望日時は必ず入力してください。',
+            'shipping_return_day.required' => '返送予定日は必ず入力してください。',
+           
+        ];
+    }
 }

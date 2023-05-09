@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Machine_detail;
+use App\Models\MachineDetail;
 use Illuminate\Http\Request;
 
 class SendtoController extends Controller
@@ -11,7 +11,7 @@ class SendtoController extends Controller
     //
     public function view(Request $request){
         $data = [
-            'records' => Machine_detail::all(),
+            'records' => MachineDetail::all(),
             'user' => Auth::user(),
             'input' => $request
 

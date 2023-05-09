@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Machine_detail;
+use App\Models\MachineDetail;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Maintenance;
@@ -13,7 +13,7 @@ class pctoolController extends Controller
 {
     public function view(Request $request){
         $data = [
-            'records' => Machine_detail::all(),
+            'records' => MachineDetail::all(),
             'user' => Auth::user(),
             'input' => $request,
             'inUse' => $request->session()->get('inUse')
@@ -26,7 +26,7 @@ class pctoolController extends Controller
     public function detail(Request $request){
         $id= $request->id;
         $data = [
-            'machine_details' => Machine_detail::find($id),
+            'machine_details' => MachineDetail::find($id),
             'orders' => Order::join('machine_detail_order','orders.order_id','=','machine_detail_order.order_id')
                 ->join('machine_details','machine_detail_order.machine_id','=','machine_details.machine_id')
                 ->where('machine_details.machine_id',$id)
@@ -37,7 +37,7 @@ class pctoolController extends Controller
     }
     public function error(Request $request){
         // $data = [
-        //     'records' => Machine_detail::all(),
+        //     'records' => MachineDetail::all(),
         //     'user' => Auth::user(),
         //     'input' => $request,
         //     'inUse' => implode(',',$request->session()->get('inUse')),

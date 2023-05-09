@@ -18,7 +18,7 @@ class Day extends Model
 
     public function machine_details()
     {
-        return $this->belongsToMany('App\Models\Machine_detail');
+        return $this->belongsToMany('App\Models\MachineDetail');
     }
 
 
