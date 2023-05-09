@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Machine_detail;
+use App\Models\MachineDetail;
 use App\Models\User;
 use App\Models\Day;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class CartController extends Controller
         $data = [
 
             'cartData' => array_column($request->session()->get('cartData'), 'session_machine_id', 'session_machine_id')
-            // 'records' => Machine_detail::whereIn('machine_id', $id)->get()
+            // 'records' => MachineDetail::whereIn('machine_id', $id)->get()
         ];
         // dd($data);
         return view('cart', $data);
@@ -43,7 +43,7 @@ class CartController extends Controller
         ->join('machine_details', 'day_machine_detail.machine_id', '=', 'machine_details.machine_id')
         ->whereIn('machine_details.machine_id',$id)->get('machine_details.machine_id')->all();
         $inUse = array_column($i, 'machine_id');
-            // $inUse = Machine_detail::where('machine_status', '!=', '待機中')->where('machine_id',$id)->get();
+            // $inUse = MachineDetail::where('machine_status', '!=', '待機中')->where('machine_id',$id)->get();
             // dd($inUse);
 
         if(!empty($inUse)){
@@ -126,7 +126,7 @@ class CartController extends Controller
 
     //     if (!empty($cartData)) {
     //         $sessionMachineId = array_column($cartData, 'session_machine_id');
-    //         $product = Machine_detail::find($sessionMachineId);
+    //         $product = MachineDetail::find($sessionMachineId);
 
     //         foreach ($cartData as $index => &$data) {
     //             //二次元目の配列を指定している$dataに'product〜'key生成 Modelオブジェクト内の各カラムを代入
