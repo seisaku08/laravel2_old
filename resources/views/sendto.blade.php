@@ -84,7 +84,7 @@
             <tr>
                 <td class="left">配達先電話番号</td>
                 <td class="right-half">
-                    <input type="tel" name="venue_tel" placeholder="例）0332921488 / 03-3292-1488" value="" oninput="value = NUM(value)" value="{{old('venue_tel')}}">
+                    <input type="tel" name="venue_tel" placeholder="例）0332921488 / 03-3292-1488" oninput="value = NUM(value)" value="{{old('venue_tel')}}">
                 </td>
             </tr>
             <tr>

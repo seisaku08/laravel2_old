@@ -37,7 +37,6 @@
       </tr>
       {{old('id')}}
       @foreach($records as $record)
-      <?php dd([$record,$input]);?>
         <tr>
           <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ $record->machine_id == $input->id? ' checked' : '' }}></td>
           <td>{{$record->machine_id}}</td>

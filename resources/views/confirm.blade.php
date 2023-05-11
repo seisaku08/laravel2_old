@@ -19,16 +19,15 @@
       </tr>
       <tr>
           <td class="left">ご担当者氏名</td>
-          <td class="right-half"></td>
+          <td class="right-half">{{ $user->name }}</td>
           <td class="left">所属部署</td>
-          <td class="right-half"><input type="hidden" name="user_busho" placeholder="" value=""></td>
+          <td class="right-half">{{ $user->user_group }}</td>
       </tr>
       <tr>
           <td class="left">メールアドレス</td>
-          <td class="right-half"><input type="hidden" name="user_email" placeholder="" value="">
-          </td>
+          <td class="right-half">{{ $user->email }}
           <td class="left">電話番号</td>
-          <td class="right-half"><input type="hidden" name="user_tel" placeholder="" value="">
+          <td class="right-half">{{ $user->user_tel }}
           </td>
       </tr>
       <tr class="midashi">
@@ -36,52 +35,52 @@
       </tr>
        <tr>
          <td class="left">セミナー開催日</td>
-          <td class="right-half"><input type="hidden" name="seminar_day" placeholder="" value="">
+          <td class="right-half">{{ $input->seminar_day }}{{ Form::hidden('seminar_day', $input->seminar_day )}}
           </td>
       </tr>
        <tr>
           <td class="left">セミナー名</td>
-          <td class="right-half"><input type="hidden" name="seminar_name" placeholder="" value="">
+          <td class="right-half">{{ $input->seminar_name }}{{ Form::hidden('seminar_name', $input->seminar_name )}}
           </td>
        </tr>
       <tr>
           <td class="left"><label>郵便番号</label></td>
-          <td class="right-half"><input type="hidden" name="zip01" id="zip" maxlength="8" placeholder="例）1010047" >
+          <td class="right-half">{{ $input->venue_zip }}{{ Form::hidden('venue_zip', $input->venue_zip )}}
           </td>
       </tr>
       <tr>
           <td class="left"><label>住所</label></td>
-          <td class="right-half"><input type="hidden" name="addr11" placeholder="例）東京都千代田区内神田1-7-5">
+          <td class="right-half">{{ $input->venue_addr1 }}{{ Form::hidden('venue_addr1', $input->venue_addr1 )}}
           </td>
           <td class="left"><label>ビル名</label></td>
-          <td class="right-half"><input type="hidden" name="addr12" placeholder="例）旭栄ビル 2階">
+          <td class="right-half">{{ $input->venue_addr2 }}{{ Form::hidden('venue_addr2', $input->venue_addr2 )}}
           </td>
       </tr>
       <tr>
           <td class="left"><label>施設名</label></td>
-          <td class="right-half"><input type="hidden" name="addr13" placeholder="例）株式会社 大應">
+          <td class="right-half">{{ $input->venue_addr3 }}{{ Form::hidden('venue_addr3', $input->venue_addr3 )}}
           </td>
           <td class="left"><label>部署名</label></td>
-          <td class="right-half"><input type="hidden" name="addr14" placeholder="例）●●部">
+          <td class="right-half">{{ $input->venue_addr4 }}{{ Form::hidden('venue_addr4', $input->venue_addr4 )}}
           </td>
       </tr>
       <tr>
           <td class="left"><label>配送先担当者</label></td>
-          <td class="right-half"><input type="hidden" name="addr_name" placeholder="">
+          <td class="right-half">{{ $input->venue_name }}{{ Form::hidden('venue_name', $input->venue_name )}}
           </td>
       </tr>
       <tr>
           <td class="left">配達先電話番号</td>
-          <td class="right-half"><input type="hidden" name="addr_tel" placeholder="例）0332921488 / 03-3292-1488" value=""  >
+          <td class="right-half">{{ $input->venue_tel }}{{ Form::hidden('venue_tel', $input->venue_tel )}}
           </td>
       </tr>
      <tr>
           <td class="left">到着希望日時</td>
-          <td class="right-half"><input type="hidden" name="arrival_date" placeholder="" value="">
-              <input type="hidden" name="arrival_time" placeholder="" value="">
+          <td class="right-half">{{ $input->shipping_arrive_day }}{{ Form::hidden('shipping_arrive_day', $input->shipping_arrive_day )}}
+            {{ $input->venue_zip }}
           </td>
           <td class="left">返送予定日</td>
-          <td class="right-half"><input type="hidden" name="return_date" placeholder="" value="">
+          <td class="right-half">{{ $input->shipping_arrive_time }}{{ Form::hidden('shipping_arrive_time', $input->shipping_arrive_time )}}
           </td>
       </tr>
     </table>
@@ -93,14 +92,16 @@
           <td class="kizai-left">機材番号</td>
           <td class="kizai-right">機種</td>
       </tr>
+    @foreach($machines as $machine)
       <tr>
-          <input type="hidden" name="id[]" value="">
-          <td class="kizai-left"></td>
-          <td class="kizai-right"></td>
+          <td class="kizai-left">{{$machine->machine_id}}</td>
+          <td class="kizai-right">{{$machine->machine_name}}</td>
+          {{ Form::hidden('id[]', $machine->machine_id )}}
       </tr>
+    @endforeach
   </table>
       <p>
-          <button type="button" onclick="history.back();">戻る</button>
+          <input type="submit" name="back" value="戻る">
           <input type="submit" value="上記の内容で送信する">
       </p>
       </form>
