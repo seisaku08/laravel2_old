@@ -10,8 +10,9 @@ class SendtoController extends Controller
 {
     //
     public function view(Request $request){
+        $mid = $request->session()->get('cartData.session_machine_id');
         $data = [
-            'records' => MachineDetail::all(),
+            'records' => MachineDetail::whereIn('machine_id', $mid)->get(),
             'user' => Auth::user(),
             'input' => $request
 

@@ -1,6 +1,7 @@
-@extends('adminlte::page', ['iFrameEnabled' => true])
+{{-- @extends('adminlte::page', ['iFrameEnabled' => true]) --}}
+@extends('adminlte::page')
 
-@section('title', 'Mypage')
+@section('title', '機材管理システム')
 
 @section('content_header')
 <h1>ダッシュボード</h1>

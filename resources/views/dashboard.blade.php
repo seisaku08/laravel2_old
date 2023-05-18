@@ -1,17 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@extends('adminlte::page')
+@section('title', 'マイページ')
+@section('content')
+    <h1>@yield('title')</h1>
+        <p>Under Constructiion!</p>
+        <?php dump($message,$orders);?>
+        <p>{{$message}}</p>
+        <table id="kizai2">
+            <tr class="midashi">
+                <th colspan="5">登録済セミナー</th>
+            </tr>
+            <tr>
+                <td class="kizai-left">期間</td>
+                <td class="kizai-right">セミナーNo.</td>
+                <td class="kizai-right">セミナー名</td>
+            </tr>
+        @foreach($orders as $order)
+            <tr>
+                <td class="kizai-left">{{$order->order_use_from}}～{{$order->order_use_to}}</td>
+                <td class="kizai-right"><a href="order/detail/{{$order->order_id}}" target="_blank">{{$order->order_no}}</a></td>
+                <td class="kizai-right">{{$order->seminar_name}}</td>
+            </tr>
+        @endforeach
+    
+    </table>
+    
+@endsection

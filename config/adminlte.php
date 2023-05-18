@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'adminlte',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -291,15 +291,15 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
+        // [
+        //     'type'         => 'fullscreen-widget',
+        //     'topnav_right' => true,
+        // ],
 
         // Sidebar items:
         // [
@@ -313,7 +313,7 @@ return [
         ],
         [
             'text' => 'マイページ',
-            'url'  => 'Mypage',
+            'url'  => 'dashboard',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -342,7 +342,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'route'  => 'profile.edit',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -528,7 +528,7 @@ return [
 
     'iframe' => [
         'default_tab' => [
-            'url' => 'Mypage',
+            'url' => 'dashboard',
             'title' => 'マイページ',
         ],
         'buttons' => [

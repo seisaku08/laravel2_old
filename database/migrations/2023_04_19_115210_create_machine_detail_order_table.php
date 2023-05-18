@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('machine_detail_order', function (Blueprint $table) {
+            $table->bigInteger('id');
             $table->bigInteger('machine_id')->unsigned();
             $table->bigInteger('order_id')->unsigned();
-            $table->primary(['machine_id','order_id']);
+            $table->timestamps();
+            $table->primary(['id','machine_id','order_id']);
+        });
+        
+        Schema::table('machine_detail_order', function (Blueprint $table) {
+            $table->bigIncrements('id')->change();
 
             // 外部キー制約
             $table->foreign('machine_id')->references('machine_id')->on('machine_details')->onDelete('cascade')->onUpdate('cascade');

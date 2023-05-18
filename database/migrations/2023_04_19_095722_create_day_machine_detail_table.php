@@ -12,9 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('day_machine_detail', function (Blueprint $table) {
+            $table->bigInteger('id');
             $table->date('day');
             $table->bigInteger('machine_id')->unsigned();
-            $table->primary(['day','machine_id']);
+            $table->timestamps();
+            $table->primary(['id','day','machine_id']);
+        });
+
+        Schema::table('day_machine_detail', function (Blueprint $table) {
+
+            $table->increments('id')->change();
 
             // 外部キー制約
             $table->foreign('day')->references('day')->on('days')->onDelete('cascade')->onUpdate('cascade');

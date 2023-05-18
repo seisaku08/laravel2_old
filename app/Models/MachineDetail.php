@@ -13,10 +13,10 @@ class MachineDetail extends Model
     /// 主キーカラム名を指定
     protected $primaryKey = 'machine_id';
 
-    public function machine_detail_order()
-    {
-        return $this->belongsToMany('App\Models\Order');
-    }
+    // public function machine_detail_order()
+    // {
+    //     return $this->belongsToMany('App\Models\Order');
+    // }
 
     public function days()
     {

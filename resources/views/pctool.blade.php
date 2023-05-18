@@ -1,13 +1,11 @@
-<!doctype html>
-<html>
-<head>
-  <title>機材発送依頼フォーム</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-</head>
-<body> 
+@extends('adminlte::page')
+@section('title', '機材発送依頼フォーム')
+@section('css')
+<link href="/css/style.css" rel="stylesheet" type="text/css">
 
-<h1 class="center">機材発送依頼フォーム</h1>
-<h2>user:{{$user->name}}</h2>
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
 
 <div class="container">
   <form method="post" action="">
@@ -15,11 +13,11 @@
     <input type="date" name="from" value="{{$input->from}}">～<input type="date" name="to" value="{{$input->to}}"><br>
     <input type="submit" value="検索">
   </form>
-
+<?php dump($records,$usage);?>
   @if(!empty($inUse))
     {{implode(',', $inUse)}}
   @endif
-
+<div id='list'>
   {{ Form::open(['route' => 'addCart']) }}
     {{ Form::hidden('user_id', $user->id) }}
     {{ Form::hidden('from', $input->from)}}
@@ -37,10 +35,10 @@
       </tr>
       {{old('id')}}
       @foreach($records as $record)
-        <tr>
-          <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ $record->machine_id == $input->id? ' checked' : '' }}></td>
+        <tr class="{{ in_array($record->machine_id, $usage)? 'hidden' : '' }}">
+          <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ in_array($record->machine_id, $usage)? ' disabled' : '' }}></td>
           <td>{{$record->machine_id}}</td>
-          <td><a href="pctool/detail?id={{$record->machine_id}}" target="_blank">{{$record->machine_name}}</a></td>
+          <td><a href="pctool/detail/{{$record->machine_id}}" target="_self">{{$record->machine_name}}</a></td>
           <td>{{$record->machine_status}}</td>
           <td>{{$record->machine_spec}}</td>
           <!-- <td>{{$record->machine_os}}</td>
@@ -49,7 +47,12 @@
         </tr>
       @endforeach
     </table>
+</div>
     <input type="submit">
   {{ Form::Close() }}
 </div>
-</body>
+@endsection
+
+@section('footer')
+(c)2023
+@endsection

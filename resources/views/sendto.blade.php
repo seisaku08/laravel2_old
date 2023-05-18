@@ -6,20 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>機材発送先入力画面</title>
 
-	<link href="sendstyle.css" rel="stylesheet" type="text/css">
-    <script>
-        const NUM = function(n){
-        return n.replace(/[０-９]/g, function(s){
-        return String.fromCharCode(s.charCodeAt(0) - 65248)
-        }).replace(/\D/g,'');
-        }
-    </script>
-    <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
 
 </head>
 
 <body>
-        
+    <link href="/css/sendstyle.css" rel="stylesheet" type="text/css">
+    <script src="/js/number.js"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
+     
     <h1>機材発送先入力画面</h1>
     @if(count($errors)>0)
     <div>
@@ -114,6 +108,7 @@
                 <td class="kizai-right">機種</td>
             </tr>
             @foreach($records as $record)
+    
                 <tr>
                     <input type="hidden" name="id[]" value="{{$record->machine_id}}">
                     <td class="kizai-left">{{$record->machine_id}}</td>
@@ -122,8 +117,8 @@
             @endforeach
         </table>
         <p>
-            <button type="button" onclick="history.back();">戻る</button>
-            <input type="submit" value="入力内容の確認">
+            <button type="submit" name="back" value="back">戻る</button>
+            <button type="submit" name="submit" value="submit">入力内容の確認</button>
         </p>
     {{ Form::Close() }}
 

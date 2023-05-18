@@ -13,19 +13,22 @@ use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
 
-    public function view(Request $request){
-        $id = $request->input('id');
-        $data = [
+    // public function view(Request $request){
+    //     $id = $request->input('id');
+    //     $data = [
 
-            'cartData' => array_column($request->session()->get('cartData'), 'session_machine_id', 'session_machine_id')
-            // 'records' => MachineDetail::whereIn('machine_id', $id)->get()
-        ];
-        // dd($data);
-        return view('cart', $data);
-    }
+    //         'cartData' => array_column($request->session()->get('cartData'), 'session_machine_id', 'session_machine_id')
+ 
+    //         // 'records' => MachineDetail::whereIn('machine_id', $id)->get()
+    //     ];
+    //     // dd($data);
+    //     return view('cart', $data);
+    // }
     public function index(Request $request){
+        $mid = $request->session()->get('cartData.session_machine_id');
         $data = [
-            'CartData' => $request->session()->get('cartData.session_machine_id'),
+            'CartData' => MachineDetail::whereIn('machine_id', $mid)->get()
+            
         ];
         // dd($data);
         return view('cart', $data);
@@ -59,7 +62,6 @@ class CartController extends Controller
 
             }
             $sessionCartData = [
-                'user_id' => Auth::user()->id,
                 'session_machine_id' => $id,
             ];
             // $sessionCartData += $request->session()->get('cartData');
@@ -107,6 +109,11 @@ class CartController extends Controller
         //POST送信された情報をsessionに保存 'users_id'(key)に$request内の'users_id'をセット
         $request->session()->put('users_id', ($request->users_id));
         return redirect()->route('cart.index');
+    }
+
+    public function delCart(Request $request,)
+    {
+        dd($request);
     }
 
     /*
