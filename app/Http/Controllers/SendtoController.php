@@ -10,13 +10,18 @@ class SendtoController extends Controller
 {
     //
     public function view(Request $request){
-        $mid = $request->session()->get('cartData.session_machine_id');
+         if($request->input('back') == 'back'){
+            // dd($request);
+            return redirect('pctool');
+        }
+       $mid = $request->session()->get('cartData.session_machine_id');
         $data = [
             'records' => MachineDetail::whereIn('machine_id', $mid)->get(),
             'user' => Auth::user(),
             'input' => $request
 
         ];
+
         // dd($data);
         return view('sendto', $data);
     }

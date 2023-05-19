@@ -8,12 +8,22 @@
 <h1>@yield('title')</h1>
 
 <div class="container">
-  <form method="post" action="">
+  <form method="post" action="/pctool">
     @csrf
-    <input type="date" name="from" value="{{$input->from}}">～<input type="date" name="to" value="{{$input->to}}"><br>
+    <input type="date" name="from" value="{{$input->from}}">～<input type="date" name="to" value="{{$input->to}}">
     <input type="submit" value="検索">
   </form>
-<?php dump($records,$usage);?>
+  @if(count($errors)>0)
+  <div>
+      <ul>
+          @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+  </div>
+  @endif
+
+<?php dump($records,$usage,$input->from, $input->session());?>
   @if(!empty($inUse))
     {{implode(',', $inUse)}}
   @endif
@@ -36,7 +46,10 @@
       {{old('id')}}
       @foreach($records as $record)
         <tr class="{{ in_array($record->machine_id, $usage)? 'hidden' : '' }}">
-          <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ in_array($record->machine_id, $usage)? ' disabled' : '' }}></td>
+          <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ in_array($record->machine_id, $usage)? ' disabled' : '' }}
+            @if ($input->id <> null)
+              {{ in_array($record->machine_id, $input->id)? ' checked' : '' }}
+            @endif></td>
           <td>{{$record->machine_id}}</td>
           <td><a href="pctool/detail/{{$record->machine_id}}" target="_self">{{$record->machine_name}}</a></td>
           <td>{{$record->machine_status}}</td>

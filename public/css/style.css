@@ -12,7 +12,7 @@ h1{
 #list{
   width: 100%;
   max-width: 1000px;
-  height: 600px;
+  height: 540px;
   overflow: scroll;
   margin: auto;
 }

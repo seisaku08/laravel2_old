@@ -5,10 +5,14 @@
 
     <div class="container">
         @csrf
-
+<?php dump($input,$CartData);?>
         <table id="kizai">
             <tr class="midashi">
                 <th colspan="5">選択機材情報</th>
+            </tr>
+            <tr>
+                <td>From:{{ $from }}</td>
+                <td>To:{{ $to }}</td>
             </tr>
             <tr>
                 <td></td>
@@ -32,8 +36,11 @@
         </table>
 
         {{Form::open(['route'=>'sendto'])}}
-            <p>
-                <button type="submit" name="back" value="back">戻る</button>
+        {{ Form::hidden('from', $from) }}
+        {{ Form::hidden('to', $to) }}
+        {{ Form::hidden('id', null) }}
+        <p>
+                <button type="submit" name="back" value="back">前の画面に戻る（カートは空になります）</button>
                 <button type="submit" name="submit" value="submit">イベント情報登録へ</button>
             </p>
         {{Form::close()}}

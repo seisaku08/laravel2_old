@@ -24,10 +24,11 @@ Route::post('/helo2', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/helo', 'HeloController@view');
-    Route::match(['get','post'],'/pctool', 'pctoolController@view')->name('pctool.retry');
+    Route::match(['get','post'],'/pctool', 'pctoolController@view')->name('pctool');
     // Route::post('/pctool', 'pctoolController@view');
-    Route::get('/pctool_error', 'pctoolController@error')->name('pctool.error');
+    // Route::get('/pctool_error', 'pctoolController@error')->name('pctool.error');
     Route::match(['get','post'],'/sendto', 'SendtoController@view')->name('sendto');
+    Route::get('/pctool.retry', 'pctoolController@retry')->name('pctool.retry');
     Route::post('/confirm', 'ConfirmController@post')->name('confirm');
     Route::post('/finish', 'FinishController@finish')->name('finish');
 
