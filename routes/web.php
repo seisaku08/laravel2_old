@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::post('/helo2', function () {
-    return view('helo2');
-});
-
 Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
+
+    Route::post('/helo2', function () {
+        return view('helo2');
+    });
+
     Route::get('/helo', 'HeloController@view');
     Route::match(['get','post'],'/pctool', 'pctoolController@view')->name('pctool');
     // Route::post('/pctool', 'pctoolController@view');
@@ -32,7 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/confirm', 'ConfirmController@post')->name('confirm');
     Route::post('/finish', 'FinishController@finish')->name('finish');
 
-    Route::get('/order/detail/{id}', 'OrderController@detail');
+    Route::get('/order/detail/{id}', 'OrderController@detail')->name('order.detail');
+    Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
+    Route::put('/order/update/{id}', 'OrderController@update')->name('order.update');
+    Route::delete('/order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
     Route::get('/pctool/detail/{id}', 'pctoolController@detail');
     
     Route::get('/cart', 'CartController@index')->name('cart.index');

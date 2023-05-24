@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('venues', function (Blueprint $table) {
             // $table->id();
             $table->bigIncrements('venue_id');
-            $table->string('venue_place');
+            $table->string('venue_place')->nullable();
             $table->string('venue_zip');
             $table->string('venue_tel');
             $table->string('venue_addr1');
-            $table->string('venue_addr2');
-            $table->string('venue_addr3');
-            $table->string('venue_addr4');
+            $table->string('venue_addr2')->nullable();
+            $table->string('venue_addr3')->nullable();
+            $table->string('venue_addr4')->nullable();
             $table->string('venue_name');
             $table->timestamps();
             

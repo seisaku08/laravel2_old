@@ -14,11 +14,16 @@ class SendtoController extends Controller
             // dd($request);
             return redirect('pctool');
         }
-       $mid = $request->session()->get('cartData.session_machine_id');
+        //セッションにトークンがない場合、作成
+        if (!$request->session()->has('Session.Token')) {
+        $request->session()->put('Session.Token', rand());
+        }
+        //セッション内のカートデータから機材情報をリストアップ
+        $mid = $request->session()->get('Session.CartData');
         $data = [
             'records' => MachineDetail::whereIn('machine_id', $mid)->get(),
             'user' => Auth::user(),
-            'input' => $request
+            'input' => $request,
 
         ];
 

@@ -1,4 +1,13 @@
-<!doctype html>
+@extends('adminlte::page')
+@section('title', $machine_details->machine_name.' | 機材詳細')
+@section('css')
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
+
+{{-- <!doctype html>
 <html lang="ja">
 
 <head>
@@ -11,7 +20,7 @@
 </head>
 
 <body>
-<h1>機材詳細</h1>
+<h1>機材詳細</h1> --}}
 <article id="list">
 
 	<table id="kizai">
@@ -67,5 +76,4 @@
 </article>
 </form>
 
-</body>
-</html>
+@endsection

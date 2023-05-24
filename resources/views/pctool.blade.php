@@ -23,7 +23,7 @@
   </div>
   @endif
 
-<?php dump($records,$usage,$input->from, $input->session());?>
+{{-- <?php dump($records,$usage,$input->from, $input->session());?> --}}
   @if(!empty($inUse))
     {{implode(',', $inUse)}}
   @endif
@@ -32,31 +32,30 @@
     {{ Form::hidden('user_id', $user->id) }}
     {{ Form::hidden('from', $input->from)}}
     {{ Form::hidden('to', $input->to)}}
-    <table class="table">
+    <table class="table table-striped">
       <tr class="midashi">
         <th>　</th>
         <th>ID</th>
         <th>機材番号</th>
-        <th>状態</th>
+        {{-- <th>状態</th> --}}
         <th>規格</th>
-        <!-- <th>OS/PW</th>
+        {{-- <th>OS/PW</th>
         <th>導入年月</th>
-        <th>備考</th> -->
+        <th>備考</th> --}}
       </tr>
-      {{old('id')}}
       @foreach($records as $record)
-        <tr class="{{ in_array($record->machine_id, $usage)? 'hidden' : '' }}">
-          <td><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ in_array($record->machine_id, $usage)? ' disabled' : '' }}
+        <tr class="{{ in_array($record->machine_id, $usage)? 'hidden' : '' }} ">
+          <td class="p-1 text-center"><input type="checkbox" name="id[]" value="{{$record->machine_id}}"{{ in_array($record->machine_id, $usage)? ' disabled' : '' }}
             @if ($input->id <> null)
               {{ in_array($record->machine_id, $input->id)? ' checked' : '' }}
             @endif></td>
-          <td>{{$record->machine_id}}</td>
-          <td><a href="pctool/detail/{{$record->machine_id}}" target="_self">{{$record->machine_name}}</a></td>
-          <td>{{$record->machine_status}}</td>
-          <td>{{$record->machine_spec}}</td>
-          <!-- <td>{{$record->machine_os}}</td>
+          <td class="p-1">{{$record->machine_id}}</td>
+          <td class="p-1"><a href="pctool/detail/{{$record->machine_id}}" target="_self">{{$record->machine_name}}</a></td>
+          {{-- <td class="p-1">{{$record->machine_status}}</td> --}}
+          <td class="p-1">{{$record->machine_spec}}</td>
+          {{-- <td>{{$record->machine_os}}</td>
           <td>{{$record->machine_since}}</td>
-          <td>{{$record->machine_memo}}</td> -->
+          <td>{{$record->machine_memo}}</td> --}}
         </tr>
       @endforeach
     </table>

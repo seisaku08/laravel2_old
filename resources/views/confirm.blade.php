@@ -1,19 +1,23 @@
-<!doctype html>
-<html lang="ja">
+@extends('adminlte::page')
+@section('title', '送信内容確認画面')
+@section('css')
+{{-- <link href="/css/style.css" rel="stylesheet" type="text/css"> --}}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入力確認画面</title>
-
-	<link href="sendstyle.css" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-  <h1>送信内容確認画面</h1>
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
             <form method="post" action="./finish">
                 @csrf
+                    @if(count($errors)>0)
+    <div>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
   <table id="form">
       <tr class="midashi">
           <th colspan="5">ご担当者様情報</th>
@@ -91,6 +95,10 @@
           <th colspan="5">選択機材情報</th>
       </tr>
       <tr>
+        <td>From:{{ $input->order_use_from }}{{ Form::hidden('order_use_from', $input->order_use_from ) }}</td>
+        <td>To:{{ $input->order_use_to }}{{ Form::hidden('order_use_to', $input->order_use_to ) }}</td>
+    </tr>
+<tr>
           <td class="kizai-left">機材番号</td>
           <td class="kizai-right">機種</td>
       </tr>
@@ -108,5 +116,4 @@
       </p>
       </form>
 
-</body>
-</html>
+@endsection

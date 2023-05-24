@@ -1,20 +1,17 @@
-<!doctype html>
-<html lang="ja">
+@extends('adminlte::page')
+@section('title', '機材発送依頼フォーム')
+@section('css')
+{{-- <link href="/css/style.css" rel="stylesheet" type="text/css"> --}}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>機材発送先入力画面</title>
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
 
-
-</head>
-
-<body>
+    <div class="container">
     <link href="/css/sendstyle.css" rel="stylesheet" type="text/css">
     <script src="/js/number.js"></script>
     <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
      
-    <h1>機材発送先入力画面</h1>
     @if(count($errors)>0)
     <div>
         <ul>
@@ -104,6 +101,11 @@
                 <th colspan="5">選択機材情報</th>
             </tr>
             <tr>
+                <td>From:{{ $input->order_use_from }}{{ Form::hidden('order_use_from', $input->order_use_from) }}{{ old('order_use_from') }}</td>
+                <td>To:{{ $input->order_use_to }}{{ Form::hidden('order_use_to', $input->order_use_to) }}{{ old('order_use_to') }}</td>
+            </tr>
+
+            <tr>
                 <td class="kizai-left">機材番号</td>
                 <td class="kizai-right">機種</td>
             </tr>
@@ -122,5 +124,4 @@
         </p>
     {{ Form::Close() }}
 
-</body>
-</html>
+@endsection

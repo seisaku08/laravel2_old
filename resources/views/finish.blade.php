@@ -1,17 +1,12 @@
-<!doctype html>
-<html lang="ja">
+@extends('adminlte::page')
+@section('title', 'オーダーを受け付けました')
+@section('css')
+{{-- <link href="/css/style.css" rel="stylesheet" type="text/css"> --}}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入力確認画面</title>
-
-	<link href="sendstyle.css" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-  <h1>オーダーを受け付けました</h1>
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
+  <p>オーダーIDは、「{{ $order_no }}」です。</p>
   <table id="form">
       <tr class="midashi">
           <th colspan="5">ご担当者様情報</th>
@@ -98,5 +93,4 @@
     @endforeach
   </table>
 
-</body>
-</html>
+@endsection

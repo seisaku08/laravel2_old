@@ -47,14 +47,14 @@ class pctoolController extends Controller
             'input' => $request,
             
         ];
-        if($request->session()->has('SessionCartData')){
-            $merge['id'] = $request->session()->get('SessionCartData');
+        if($request->session()->has('Session.CartData')){
+            $merge['id'] = $request->session()->get('Session.CartData');
         }
-        if($request->session()->has('SessionUseFrom')){
-            $merge['from'] = $request->session()->get('SessionUseFrom');
+        if($request->session()->has('Session.UseFrom')){
+            $merge['from'] = $request->session()->get('Session.UseFrom');
         }
-        if($request->session()->has('SessionUseTo')){
-            $merge['to'] = $request->session()->get('SessionUseTo');
+        if($request->session()->has('Session.UseTo')){
+            $merge['to'] = $request->session()->get('Session.UseTo');
         }
         
         if(isset($merge)){

@@ -1,11 +1,14 @@
-@extends('layouts.standard')
+@extends('adminlte::page')
 @section('title', 'カート')
-@section('content')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+@section('css')
+<link href="/css/style.css" rel="stylesheet" type="text/css">
 
-    <div class="container">
+@endsection
+@section('content')
+<h1>@yield('title')</h1>
+
         @csrf
-<?php dump($input,$CartData);?>
+{{-- <?php dump($input,$CartData);?> --}}
         <table id="kizai">
             <tr class="midashi">
                 <th colspan="5">選択機材情報</th>
@@ -36,8 +39,8 @@
         </table>
 
         {{Form::open(['route'=>'sendto'])}}
-        {{ Form::hidden('from', $from) }}
-        {{ Form::hidden('to', $to) }}
+        {{ Form::hidden('order_use_from', $from) }}
+        {{ Form::hidden('order_use_to', $to) }}
         {{ Form::hidden('id', null) }}
         <p>
                 <button type="submit" name="back" value="back">前の画面に戻る（カートは空になります）</button>

@@ -257,10 +257,12 @@ return [
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    'password_reset_url' => 'forgot-password',
+    'password_email_url' => 'forgot-password',
+    // 'password_reset_url' => 'password/reset',
+    // 'password_email_url' => 'password/email',
     'profile_url' => false,
-
+    
     /*
     |--------------------------------------------------------------------------
     | Laravel Mix
@@ -314,24 +316,24 @@ return [
         [
             'text' => 'マイページ',
             'url'  => 'dashboard',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fa fa-fw fa-home',
         ],
         [
             'text' => '機材リスト/依頼',
             'url'  => 'pctool',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa fa-fw fa-share',
         ],
-        ['header' => '情報'],
-        [
-            'text' => '予約確認/変更',
-            'url'  => 'pctool',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => '機材使用予定一覧',
-            'url'  => 'pctool',
-            'icon' => 'far fa-fw fa-file',
-        ],
+        // ['header' => '情報'],
+        // [
+        //     'text' => '予約確認/変更',
+        //     'url'  => 'pctool',
+        //     'icon' => 'far fa-fw fa-file',
+        // ],
+        // [
+        //     'text' => '機材使用予定一覧',
+        //     'url'  => 'pctool',
+        //     'icon' => 'far fa-fw fa-file',
+        // ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -341,15 +343,15 @@ return [
         // ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
+            'text' => 'ユーザー情報変更',
             'route'  => 'profile.edit',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

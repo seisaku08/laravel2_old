@@ -30,14 +30,14 @@ class CartController extends Controller
     //     return view('cart', $data);
     // }
     public function index(Request $request){
-        $mid = $request->session()->get('SessionCartData');
+        $mid = $request->session()->get('Session.CartData');
         $data = [
 
             'user' => Auth::user()->id,
             'input' => $request,
             'CartData' => MachineDetail::wherein('machine_id', $mid)->get(),
-            'from' => $request->session()->get('SessionUseFrom'),
-            'to' => $request->session()->get('SessionUseTo'),
+            'from' => $request->session()->get('Session.UseFrom'),
+            'to' => $request->session()->get('Session.UseTo'),
             
         ];
         // dd($data);
@@ -53,18 +53,25 @@ class CartController extends Controller
         //使用機材のIDを取得
         $id = $request->input('id');
 
-        
-        $validator = Validator::make($request->all(), [
+
+        $validator = Validator::make($request->all(),
+        [
             'from' => 'required',
             'to' => 'required',
             'id' => 'required',
-
+        ],
+        [
+            'from' => '使用開始日は必ず入力してください。',
+            'to' => '使用終了日は必ず入力してください。',
+            'id' => '機材は必ず一つ以上選択してください。',
         ]);
+
         if($validator->fails()){
             //セッションに機材ID、日程を登録
-            $request->session()->put('SessionCartData', $id);
-            $request->session()->put('SessionUseFrom', $request->from);
-            $request->session()->put('SessionUseTo', $request->to);
+            $request->session()->put('Session.CartData', $id);
+            $request->session()->put('Session.UseFrom', $request->from);
+            $request->session()->put('Session.UseTo', $request->to);
+
             return redirect()->route('pctool.retry')->withErrors($validator);
         }
 
@@ -102,9 +109,9 @@ class CartController extends Controller
                 }
             }
             //セッションに機材ID、日程を登録
-            $request->session()->put('SessionCartData', $id);
-            $request->session()->put('SessionUseFrom', $request->from);
-            $request->session()->put('SessionUseTo', $request->to);
+            $request->session()->put('Session.CartData', $id);
+            $request->session()->put('Session.UseFrom', $request->from);
+            $request->session()->put('Session.UseTo', $request->to);
 
         }
         // dd($id,$u,$usage,$tempUse,array_merge($usage,$tempUse),$inUse,in_array($id, $inUse),$request->session());

@@ -15,6 +15,6 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        vue(),
+        // vue(),
     ],
 });
