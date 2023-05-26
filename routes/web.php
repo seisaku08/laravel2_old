@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return redirect()->route('dashboard');
+        return view('welcome');
+        // return redirect()->route('dashboard');
     });
 
     Route::post('/helo2', function () {
