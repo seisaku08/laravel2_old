@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('welcome');
         // return redirect()->route('dashboard');
     });
+
+Route::middleware('auth')->group(function () {
 
     Route::post('/helo2', function () {
         return view('helo2');
